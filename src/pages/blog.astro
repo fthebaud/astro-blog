@@ -1,0 +1,33 @@
+---
+import "../styles/global.css";
+import Navigation from "@src/components/Navigation.astro";
+import Social from "@src/components/Social.astro";
+import Footer from "@src/components/Footer.astro";
+import BlogPost from "@src/components/BlogPost.astro";
+const allPosts = Object.values(
+  await import.meta.glob("@src/pages/posts/*.md", { eager: true }),
+);
+---
+
+<script>
+  import "@src/scripts/mybutton";
+</script>
+
+<h1>Some awesome blog page</h1>
+
+<Navigation />
+<p>This is where I will post about my journey learning Astro.</p>
+
+<ul>
+  {
+    allPosts.map((post: any) => (
+      <BlogPost title={post.frontmatter.title} url={post.url} />
+    ))
+  }
+</ul>
+
+<Social platform="test" username="truc" rien="rien" />
+
+<button id="my-button">TEST</button>
+
+<Footer />

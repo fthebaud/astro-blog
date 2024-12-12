@@ -1,7 +1,15 @@
 ---
 import BaseLayout from "@src/layouts/BaseLayout.astro";
+import Greeting from "@src/components/Greeting";
 ---
 
 <BaseLayout pageTitle="Home Page">
   <h2>My awesome blog subtitle</h2>
+
+  <!-- doesn't work because no hydration -->
+  <!-- <Greeting messages={["Hi", "Hello", "Howdy", "Hey there"]} /> -->
+
+  <!-- Works because hydration (adding interactivity to component after page load) -->
+  <!-- client:load directive tells Astro to send and rerun its JavaScript on the client when the page loads, making the component interactive -->
+  <Greeting client:load messages={["Hej", "Hallo", "Hola", "Habari"]} />
 </BaseLayout>

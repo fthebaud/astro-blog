@@ -1,0 +1,23 @@
+---
+import { getCollection } from "astro:content";
+import "../styles/global.css";
+
+import BlogPost from "@src/components/BlogPost.astro";
+const allPosts = await getCollection("articles");
+---
+
+<script>
+  import "@src/scripts/mybutton";
+</script>
+
+<h1>Some awesome blog page</h1>
+
+<!-- // COLLECTION STEP 3: Index collection entries -->
+
+<ul>
+  {
+    allPosts.map((post: any) => (
+      <BlogPost url={`/articles/${post.id}/`} title={post.data.title} />
+    ))
+  }
+</ul>
